@@ -41,8 +41,12 @@ func _process(delta):
 		direction3D += model.get_transform().basis[2]
 	if left:
 		direction3D -= model.get_transform().basis[0]
+		if model.rotation_degrees.z < 45:
+			model.rotation_degrees.z += 1
 	if right:
 		direction3D += model.get_transform().basis[0]
+		if model.rotation_degrees.z < -45:
+			model.rotation_degrees.z -= 1
 	
 	
 	## Acceleration and Retardation
