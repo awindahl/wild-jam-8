@@ -1,14 +1,19 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/ShipModel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/UI/outerCH.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI/crosshair.png" type="Texture" id=3]
 [ext_resource path="res://assets/sounds/jetpack.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sounds/laser.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/UI/overlay.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/overlay2.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI/overlay3.png" type="Texture" id=8]
+[ext_resource path="res://assets/font/Xolonium-Regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 8.40818, 2.60584, 10.251 )
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 gravity = Vector3( 0, 0, 200 )
@@ -16,15 +21,15 @@ angular_velocity = 1.0
 scale = 2.0
 scale_random = 1.0
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=12]
 flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 1, 1, 1, 0.552941 )
 
-[sub_resource type="SphereMesh" id=4]
-material = SubResource( 3 )
+[sub_resource type="SphereMesh" id=13]
+material = SubResource( 12 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=7]
 render_priority = 20
 flags_transparent = true
 flags_unshaded = true
@@ -32,60 +37,163 @@ flags_no_depth_test = true
 flags_do_not_receive_shadows = true
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="QuadMesh" id=6]
-material = SubResource( 5 )
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 7 )
 size = Vector2( 2.46, 2.55 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+extra_spacing_top = -3
+extra_spacing_bottom = -10
+extra_spacing_char = 2
+extra_spacing_space = -2
+font_data = ExtResource( 9 )
 
 [node name="Spaceship" type="KinematicBody"]
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.24168 )
+transform = Transform( 1.62548, 0, 0, 0, 1.21071, 0, 0, 0, 2.04614, 0, -2.80347, 3.62298 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="CameraLookat" type="Spatial" parent="."]
+editor/display_folded = true
 
 [node name="Camera" type="Camera" parent="CameraLookat"]
-transform = Transform( 1, 0, 0, 0, 0.984989, 0.172617, 0, -0.172617, 0.984989, 0, 14.41, 71.18 )
+transform = Transform( 1, 0, 0, 0, 0.984989, 0.172617, 0, -0.172617, 0.984989, 0, 14.41, 66.48 )
 cull_mask = 524287
 current = true
 near = 0.01
 far = 8000.0
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
 
 [node name="Particles" type="Particles" parent="Model"]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0468369, -4.79339, 11.1744 )
 visible = false
 amount = 100
 lifetime = 0.3
-process_material = SubResource( 2 )
-draw_pass_1 = SubResource( 4 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 13 )
 
 [node name="Particles2" type="Particles" parent="Model"]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 13.5249, -7.41735, 10.4518 )
 visible = false
 amount = 100
 lifetime = 0.3
-process_material = SubResource( 2 )
-draw_pass_1 = SubResource( 4 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 13 )
 
 [node name="Particles3" type="Particles" parent="Model"]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -13.996, -7.41735, 10.4518 )
 visible = false
 amount = 100
 lifetime = 0.3
-process_material = SubResource( 2 )
-draw_pass_1 = SubResource( 4 )
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 13 )
 
 [node name="OuterCrosshair" type="MeshInstance" parent="Model"]
-transform = Transform( -4.37114e-007, -10, 0, 10, -4.37114e-007, 0, 0, 0, 10, 0, -4.95, -235.76 )
-mesh = SubResource( 6 )
+transform = Transform( -4.37114e-007, -10, 0, 10, -4.37114e-007, 0, 0, 0, 10, 0, -37.418, -423.71 )
+mesh = SubResource( 8 )
 material/0 = null
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="ShootRay" type="RayCast" parent="Model"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.89225, -20.0496 )
+enabled = true
+cast_to = Vector3( 0, 0, -100 )
+
+[node name="Rocket" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 pitch_scale = 0.2
 
+[node name="Laser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -5.09
+pitch_scale = 1.3
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="UI"]
+modulate = Color( 1, 1, 1, 0.0509804 )
+position = Vector2( 809.229, 426.326 )
+texture = ExtResource( 6 )
+
+[node name="Sprite3" type="Sprite" parent="UI"]
+position = Vector2( 779.341, 429.842 )
+texture = ExtResource( 7 )
+
+[node name="Sprite4" type="Sprite" parent="UI"]
+position = Vector2( 1134.47, 429.842 )
+texture = ExtResource( 7 )
+flip_h = true
+
+[node name="Sprite5" type="Sprite" parent="UI"]
+modulate = Color( 1, 1, 1, 0.219608 )
+position = Vector2( 1134.47, 429.842 )
+texture = ExtResource( 8 )
+flip_h = true
+
+[node name="Sprite6" type="Sprite" parent="UI"]
+modulate = Color( 1, 1, 1, 0.219608 )
+position = Vector2( 779.341, 429.842 )
+texture = ExtResource( 8 )
+
+[node name="Sprite2" type="Sprite" parent="UI"]
+modulate = Color( 1, 1, 1, 0.0509804 )
+position = Vector2( 1116.89, 429.842 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="FUEL" type="Label" parent="UI"]
+modulate = Color( 0.596078, 1, 0.898039, 1 )
+margin_left = 415.689
+margin_top = 835.289
+margin_right = 518.689
+margin_bottom = 874.289
+custom_fonts/font = SubResource( 9 )
+text = "Fuel:"
+uppercase = true
+
+[node name="SPEED" type="Label" parent="UI"]
+modulate = Color( 0.596078, 1, 0.898039, 1 )
+margin_left = 1272.14
+margin_top = 835.289
+margin_right = 1460.14
+margin_bottom = 874.289
+custom_fonts/font = SubResource( 9 )
+text = "SPEED:"
+uppercase = true
+
+[node name="FuelVar" type="RichTextLabel" parent="UI"]
+modulate = Color( 0, 0.764706, 1, 1 )
+margin_left = 520.256
+margin_top = 839.0
+margin_right = 687.256
+margin_bottom = 877.0
+rect_min_size = Vector2( 3.77, 0 )
+custom_fonts/normal_font = SubResource( 10 )
+text = "100"
+scroll_active = false
+
+[node name="SpeedVar" type="RichTextLabel" parent="UI"]
+modulate = Color( 0, 0.764706, 1, 1 )
+margin_left = 1416.71
+margin_top = 839.0
+margin_right = 1583.71
+margin_bottom = 877.0
+rect_min_size = Vector2( 3.77, 0 )
+custom_fonts/normal_font = SubResource( 10 )
+text = "1234"
+scroll_active = false
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

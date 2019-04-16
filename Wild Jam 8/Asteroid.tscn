@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="Asteroid" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+
