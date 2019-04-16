@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ambient3.wav-59d8ea7b5513c336bd001cec4d833403.sample"
+
+[deps]
+
+source_file="res://assets/sounds/ambient3.wav"
+dest_files=[ "res://.import/ambient3.wav-59d8ea7b5513c336bd001cec4d833403.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

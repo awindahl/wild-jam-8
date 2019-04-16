@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/jetpack.wav-bc64f5811857b3a3e100a6bfed4b4a2d.sample"
+
+[deps]
+
+source_file="res://assets/sounds/jetpack.wav"
+dest_files=[ "res://.import/jetpack.wav-bc64f5811857b3a3e100a6bfed4b4a2d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=true
+compress/mode=0

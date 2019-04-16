@@ -1,10 +1,40 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://assets/models/ShipModel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/UI/outerCH.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/jetpack.wav" type="AudioStream" id=4]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 8.40818, 2.60584, 10.251 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+gravity = Vector3( 0, 0, 200 )
+angular_velocity = 1.0
+scale = 2.0
+scale_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 1, 1, 1, 0.552941 )
+
+[sub_resource type="SphereMesh" id=4]
+material = SubResource( 3 )
+
+[sub_resource type="SpatialMaterial" id=5]
+render_priority = 20
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+flags_do_not_receive_shadows = true
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=6]
+material = SubResource( 5 )
+size = Vector2( 2.46, 2.55 )
 
 [node name="Spaceship" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -18,10 +48,44 @@ shape = SubResource( 1 )
 [node name="CameraLookat" type="Spatial" parent="."]
 
 [node name="Camera" type="Camera" parent="CameraLookat"]
-transform = Transform( 1, 0, 0, 0, 0.999714, 0.0239087, 0, -0.0239087, 0.999714, 0, 24.46, 52.01 )
+transform = Transform( 1, 0, 0, 0, 0.984989, 0.172617, 0, -0.172617, 0.984989, 0, 14.41, 71.18 )
+cull_mask = 524287
 current = true
 near = 0.01
 far = 8000.0
 
 [node name="Model" parent="." instance=ExtResource( 2 )]
+
+[node name="Particles" type="Particles" parent="Model"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0468369, -4.79339, 11.1744 )
+visible = false
+amount = 100
+lifetime = 0.3
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 4 )
+
+[node name="Particles2" type="Particles" parent="Model"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 13.5249, -7.41735, 10.4518 )
+visible = false
+amount = 100
+lifetime = 0.3
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 4 )
+
+[node name="Particles3" type="Particles" parent="Model"]
+transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -13.996, -7.41735, 10.4518 )
+visible = false
+amount = 100
+lifetime = 0.3
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 4 )
+
+[node name="OuterCrosshair" type="MeshInstance" parent="Model"]
+transform = Transform( -4.37114e-007, -10, 0, 10, -4.37114e-007, 0, 0, 0, 10, 0, -4.95, -235.76 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 0.2
 
