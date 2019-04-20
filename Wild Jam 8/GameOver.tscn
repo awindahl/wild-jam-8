@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/font/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scripts/GameOverButton.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="GameOver" type="Spatial"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 598.908
+margin_top = 230.553
+margin_right = 1385.91
+margin_bottom = 385.553
+custom_fonts/font = SubResource( 1 )
+text = "Game Over!"
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 913.062
+margin_top = 821.511
+margin_right = 1110.06
+margin_bottom = 866.511
+custom_fonts/font = SubResource( 2 )
+text = "Main Menu"
+script = ExtResource( 2 )
+
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_Button_pressed"]

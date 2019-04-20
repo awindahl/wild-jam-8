@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://SpaceShip.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/planets/2k_mars.jpg" type="Texture" id=2]
@@ -10,7 +10,9 @@
 [ext_resource path="res://spacebox/4.png" type="Texture" id=8]
 [ext_resource path="res://spacebox/2.png" type="Texture" id=9]
 [ext_resource path="res://assets/sounds/ambientmain_0.wav" type="AudioStream" id=10]
-[ext_resource path="res://SpeedRing.tscn" type="PackedScene" id=11]
+[ext_resource path="res://WinRing.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Asteroid.tscn" type="PackedScene" id=12]
+[ext_resource path="res://SpeedRing.tscn" type="PackedScene" id=13]
 
 [sub_resource type="SphereMesh" id=1]
 
@@ -22,6 +24,7 @@ ao_on_uv2 = false
 ao_texture_channel = 0
 
 [sub_resource type="ProceduralSky" id=3]
+sky_top_color = Color( 0, 0, 0, 1 )
 sky_horizon_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Environment" id=4]
@@ -31,6 +34,7 @@ background_sky = SubResource( 3 )
 [node name="Space" type="Spatial"]
 
 [node name="SpaceShip" parent="." instance=ExtResource( 1 )]
+editor/display_folded = true
 transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.262987, 2.68684, -13.4713 )
 
 [node name="Mars" type="MeshInstance" parent="SpaceShip"]
@@ -64,6 +68,470 @@ environment = SubResource( 4 )
 stream = ExtResource( 10 )
 autoplay = true
 
-[node name="SpeedRing" parent="." instance=ExtResource( 11 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.97446, -2.06391, -34.3385 )
+[node name="WinRing" parent="." instance=ExtResource( 11 )]
+transform = Transform( -0.16362, -0.973037, 0.162566, 0.973047, -0.186323, -0.135876, 0.162502, 0.135953, 0.977297, 396.863, 72.0778, -854.987 )
+
+[node name="Asteroids" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="Asteroid" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 8.80045, 1.89524, -25.9184 )
+
+[node name="Asteroid27" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 204.697, 1.89522, -287.486 )
+
+[node name="Asteroid39" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 35.9336, 1.89522, -196.169 )
+
+[node name="Asteroid56" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 182.527, 1.89522, -25.8503 )
+
+[node name="Asteroid82" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 428.805, 1.89522, -349.954 )
+
+[node name="Asteroid92" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 229.207, 1.89522, -607.999 )
+
+[node name="Asteroid115" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 484.678, 14.8904, -836.006 )
+
+[node name="Asteroid135" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 253.859, 40.1163, -712.846 )
+
+[node name="Asteroid10" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, -79.0005, 1.89524, -104.436 )
+
+[node name="Asteroid25" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 116.896, 1.89522, -366.004 )
+
+[node name="Asteroid40" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, -51.8674, 1.89522, -274.687 )
+
+[node name="Asteroid60" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 94.7258, 1.89522, -104.368 )
+
+[node name="Asteroid79" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 341.004, 1.89522, -428.472 )
+
+[node name="Asteroid91" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 141.406, 1.89522, -686.517 )
+
+[node name="Asteroid114" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 396.877, 14.8904, -914.524 )
+
+[node name="Asteroid134" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 166.058, 40.1163, -791.364 )
+
+[node name="Asteroid2" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 4.42984, 6.33011, -39.478 )
+
+[node name="Asteroid26" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 200.326, 6.33009, -301.046 )
+
+[node name="Asteroid38" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 31.563, 6.33009, -209.729 )
+
+[node name="Asteroid72" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 178.156, 6.33009, -39.4099 )
+
+[node name="Asteroid86" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 424.434, 6.33009, -363.514 )
+
+[node name="Asteroid103" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 224.836, 6.33009, -621.558 )
+
+[node name="Asteroid122" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 480.308, 19.3253, -849.566 )
+
+[node name="Asteroid140" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 249.488, 44.5512, -726.406 )
+
+[node name="Asteroid11" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 6.84116, 6.33011, -39.478 )
+
+[node name="Asteroid28" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 202.738, 6.33009, -301.046 )
+
+[node name="Asteroid41" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 33.9743, 6.33009, -209.729 )
+
+[node name="Asteroid55" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 180.567, 6.33009, -39.4099 )
+
+[node name="Asteroid73" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 426.846, 6.33009, -363.514 )
+
+[node name="Asteroid94" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 227.248, 6.33009, -621.558 )
+
+[node name="Asteroid110" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 482.719, 19.3253, -849.566 )
+
+[node name="Asteroid132" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 251.9, 44.5512, -726.406 )
+
+[node name="Asteroid12" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.71094, 6.33011, -41.3162 )
+
+[node name="Asteroid22" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 201.607, 6.33009, -302.884 )
+
+[node name="Asteroid43" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 32.8441, 6.33009, -211.567 )
+
+[node name="Asteroid58" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 179.437, 6.33009, -41.2481 )
+
+[node name="Asteroid81" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 425.715, 6.33009, -365.352 )
+
+[node name="Asteroid101" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 226.118, 6.33009, -623.396 )
+
+[node name="Asteroid111" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 481.589, 19.3253, -851.404 )
+
+[node name="Asteroid130" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 250.769, 44.5512, -728.244 )
+
+[node name="Asteroid13" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 5.71094, 8.63362, -41.3162 )
+
+[node name="Asteroid21" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 201.607, 8.6336, -302.884 )
+
+[node name="Asteroid46" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 32.8441, 8.6336, -211.567 )
+
+[node name="Asteroid61" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 179.437, 8.6336, -41.2481 )
+
+[node name="Asteroid75" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 425.715, 8.6336, -365.352 )
+
+[node name="Asteroid95" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 226.118, 8.6336, -623.396 )
+
+[node name="Asteroid112" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 481.589, 21.6288, -851.404 )
+
+[node name="Asteroid133" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 250.769, 46.8547, -728.244 )
+
+[node name="Asteroid18" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 16.1969, 8.63362, -37.7423 )
+
+[node name="Asteroid23" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 212.093, 8.6336, -299.31 )
+
+[node name="Asteroid47" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 43.33, 8.6336, -207.993 )
+
+[node name="Asteroid62" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 189.923, 8.6336, -37.6741 )
+
+[node name="Asteroid76" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 436.201, 8.6336, -361.778 )
+
+[node name="Asteroid100" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 236.604, 8.6336, -619.823 )
+
+[node name="Asteroid113" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 492.075, 21.6288, -847.83 )
+
+[node name="Asteroid131" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 261.255, 46.8547, -724.67 )
+
+[node name="Asteroid14" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 8.76318, 8.63362, -41.3162 )
+
+[node name="Asteroid24" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 204.66, 8.6336, -302.884 )
+
+[node name="Asteroid37" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 35.8963, 8.6336, -211.567 )
+
+[node name="Asteroid71" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 182.49, 8.6336, -41.2481 )
+
+[node name="Asteroid87" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 428.768, 8.6336, -365.352 )
+
+[node name="Asteroid106" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 229.17, 8.6336, -623.396 )
+
+[node name="Asteroid126" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 484.641, 21.6288, -851.404 )
+
+[node name="Asteroid138" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 253.822, 46.8547, -728.244 )
+
+[node name="Asteroid17" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 19.2491, 8.63362, -37.7423 )
+
+[node name="Asteroid20" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 215.145, 8.6336, -299.31 )
+
+[node name="Asteroid45" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 46.3823, 8.6336, -207.993 )
+
+[node name="Asteroid63" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 192.975, 8.6336, -37.6741 )
+
+[node name="Asteroid80" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 439.253, 8.6336, -361.778 )
+
+[node name="Asteroid97" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 239.656, 8.6336, -619.823 )
+
+[node name="Asteroid116" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 495.127, 21.6288, -847.83 )
+
+[node name="Asteroid127" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 264.307, 46.8547, -724.67 )
+
+[node name="Asteroid15" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 8.76318, 6.08627, -41.3162 )
+
+[node name="Asteroid19" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 204.66, 6.08625, -302.884 )
+
+[node name="Asteroid44" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 35.8963, 6.08625, -211.567 )
+
+[node name="Asteroid59" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 182.49, 6.08625, -41.2481 )
+
+[node name="Asteroid74" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 428.768, 6.08625, -365.352 )
+
+[node name="Asteroid99" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 229.17, 6.08625, -623.396 )
+
+[node name="Asteroid117" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 484.641, 19.0814, -851.404 )
+
+[node name="Asteroid128" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 253.822, 44.3074, -728.244 )
+
+[node name="Asteroid16" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 19.2491, 6.08627, -37.7423 )
+
+[node name="Asteroid36" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 215.145, 6.08625, -299.31 )
+
+[node name="Asteroid50" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 46.3823, 6.08625, -207.993 )
+
+[node name="Asteroid64" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 192.975, 6.08625, -37.6741 )
+
+[node name="Asteroid77" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 439.253, 6.08625, -361.778 )
+
+[node name="Asteroid98" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 239.656, 6.08625, -619.823 )
+
+[node name="Asteroid119" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 495.127, 19.0814, -847.83 )
+
+[node name="Asteroid137" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 264.307, 44.3074, -724.67 )
+
+[node name="Asteroid9" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, -66.746, 6.33011, -111.702 )
+
+[node name="Asteroid29" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 129.15, 6.33009, -373.27 )
+
+[node name="Asteroid42" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, -39.6129, 6.33009, -281.953 )
+
+[node name="Asteroid57" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 106.98, 6.33009, -111.634 )
+
+[node name="Asteroid83" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 353.258, 6.33009, -435.738 )
+
+[node name="Asteroid93" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 153.661, 6.33009, -693.782 )
+
+[node name="Asteroid109" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 409.132, 19.3253, -921.79 )
+
+[node name="Asteroid129" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 178.312, 44.5512, -798.63 )
+
+[node name="Asteroid3" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -1.15422, 6.33011, -73.0234 )
+
+[node name="Asteroid30" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 194.742, 6.33009, -334.591 )
+
+[node name="Asteroid52" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 25.9789, 6.33009, -243.274 )
+
+[node name="Asteroid69" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 172.572, 6.33009, -72.9553 )
+
+[node name="Asteroid88" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 418.85, 6.33009, -397.059 )
+
+[node name="Asteroid107" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 219.252, 6.33009, -655.104 )
+
+[node name="Asteroid125" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 474.724, 19.3253, -883.111 )
+
+[node name="Asteroid143" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 243.904, 44.5512, -759.951 )
+
+[node name="Asteroid6" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, -35.2711, 6.33011, -124.579 )
+
+[node name="Asteroid33" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 160.625, 6.33009, -386.147 )
+
+[node name="Asteroid49" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, -8.13794, 6.33009, -294.829 )
+
+[node name="Asteroid65" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 138.455, 6.33009, -124.511 )
+
+[node name="Asteroid78" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 384.733, 6.33009, -448.614 )
+
+[node name="Asteroid96" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 185.136, 6.33009, -706.659 )
+
+[node name="Asteroid118" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 440.607, 19.3253, -934.667 )
+
+[node name="Asteroid136" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 209.787, 44.5512, -811.507 )
+
+[node name="Asteroid4" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 46.4697, 19.744, -143.311 )
+
+[node name="Asteroid32" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 242.366, 19.744, -404.879 )
+
+[node name="Asteroid48" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 73.6029, 19.744, -313.562 )
+
+[node name="Asteroid68" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 220.196, 19.744, -143.243 )
+
+[node name="Asteroid85" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 466.474, 19.744, -467.347 )
+
+[node name="Asteroid102" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 266.876, 19.744, -725.391 )
+
+[node name="Asteroid121" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 522.348, 32.7392, -953.399 )
+
+[node name="Asteroid139" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 291.528, 57.9651, -830.239 )
+
+[node name="Asteroid7" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 43.8201, 19.744, -93.7086 )
+
+[node name="Asteroid34" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 239.717, 19.744, -355.277 )
+
+[node name="Asteroid51" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 70.9533, 19.744, -263.959 )
+
+[node name="Asteroid70" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 217.546, 19.744, -93.6405 )
+
+[node name="Asteroid90" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 463.825, 19.744, -417.744 )
+
+[node name="Asteroid108" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 264.227, 19.744, -675.789 )
+
+[node name="Asteroid120" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 519.698, 32.7392, -903.797 )
+
+[node name="Asteroid144" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 288.879, 57.9651, -780.636 )
+
+[node name="Asteroid5" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 110.58, 19.744, -196.198 )
+
+[node name="Asteroid31" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 306.476, 19.744, -457.766 )
+
+[node name="Asteroid53" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 137.713, 19.744, -366.449 )
+
+[node name="Asteroid66" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 284.306, 19.744, -196.13 )
+
+[node name="Asteroid84" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 530.584, 19.744, -520.234 )
+
+[node name="Asteroid105" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 330.987, 19.744, -778.278 )
+
+[node name="Asteroid124" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 586.458, 32.7392, -1006.29 )
+
+[node name="Asteroid141" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 355.638, 57.9651, -883.126 )
+
+[node name="Asteroid8" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 109.595, 19.744, -42.9071 )
+
+[node name="Asteroid35" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 305.492, 19.744, -304.475 )
+
+[node name="Asteroid54" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 136.728, 19.744, -213.158 )
+
+[node name="Asteroid67" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 283.322, 19.744, -42.8389 )
+
+[node name="Asteroid89" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 529.6, 19.744, -366.943 )
+
+[node name="Asteroid104" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 330.002, 19.744, -624.987 )
+
+[node name="Asteroid123" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 585.473, 32.7392, -852.995 )
+
+[node name="Asteroid142" parent="Asteroids" instance=ExtResource( 12 )]
+transform = Transform( 0.443054, 0, -1.95031, 0, 2, 0, 1.95031, 0, 0.443054, 354.654, 57.9651, -729.835 )
+
+[node name="SpeedRings" type="Spatial" parent="."]
+editor/display_folded = true
+
+[node name="SpeedRing" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.97446, 7.039, -48.3105 )
+
+[node name="SpeedRing2" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( 0.585271, 0, -0.810838, 0, 1, 0, 0.810838, 0, 0.585271, 11.7584, 7.039, -141.485 )
+
+[node name="SpeedRing3" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( 0.0503855, 0, -0.99873, 0, 1, 0, 0.99873, 0, 0.0503855, 108.847, 7.039, -163.869 )
+
+[node name="SpeedRing4" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( 0.424721, -0.534034, -0.73104, 0.029186, 0.815147, -0.578519, 0.904854, 0.224373, 0.361796, 182.892, 31.2577, -163.869 )
+
+[node name="SpeedRing5" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( 0.691478, -0.538, 0.482093, -0.668449, -0.729566, 0.144601, 0.273924, -0.422243, -0.864105, 298.323, 31.2577, -203.276 )
+
+[node name="SpeedRing6" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( 0.691478, -0.538, 0.482093, -0.668449, -0.729566, 0.144601, 0.273924, -0.422243, -0.864105, 298.323, 94.4904, -359.545 )
+
+[node name="SpeedRing7" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( -0.884901, -0.459165, 0.0782218, -0.247528, 0.605842, 0.756099, -0.394564, 0.64971, -0.649767, 292.544, 97.0521, -486.449 )
+
+[node name="SpeedRing8" parent="SpeedRings" instance=ExtResource( 13 )]
+transform = Transform( -0.884901, -0.459165, 0.0782218, -0.448337, 0.794139, -0.410289, 0.126271, -0.398135, -0.908595, 351.778, 131.972, -611.636 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

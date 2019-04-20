@@ -16,8 +16,13 @@ onready var exhaust2 = get_node("Model/Particles2")
 onready var exhaust3 = get_node("Model/Particles3")
 onready var fuelText = get_node("UI/FuelVar")
 onready var speedText = get_node("UI/SpeedVar")
+onready var boost = get_node("Boost")
+onready var distText = get_node("UI/DistVar")
+onready var livesText = get_node("UI/LivesVar")
 
+var distVar = 24000
 var fuelVar = 100
+var lives = 3
 
 var laser = preload("res://Laser.tscn")
 
@@ -35,6 +40,10 @@ var left
 var right
 var shoot
 var canShoot = true
+var type = "PLAYER"
+var normal = Vector3()
+var isKnocked
+var canDie = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -42,6 +51,7 @@ func _ready():
 	#camera.set_as_toplevel(true)
 
 func _process(delta):
+	
 	forward = Input.is_action_pressed("forward")
 	backward = Input.is_action_pressed("backward")
 	left = Input.is_action_pressed("left")
@@ -51,18 +61,38 @@ func _process(delta):
 	var aim = camera.get_camera_transform().basis
 	var value = 0
 	
+	distVar -= 1
+	distText.text = var2str(distVar)
+	livesText.text = var2str(lives)
+	
+	if distVar == 0:
+		_die()
+	
+	if lives < 0:
+		forward = null
+		aim = null
+		shoot = null
+		cameraLook = null
+		#camera = null
+		
+	if lives < 0 and canDie:
+		canDie = false
+		$AnimationPlayer.play("die")
+		forward = null
+		
+	
 	rotationSpeed = 1
 	#direction3D = Vector3()
 	direction3D = -model.get_transform().basis[2]
 	
-	if forward and fuelVar > 1:
+	if forward and fuelVar > 1 and get_slide_count() <= 0:
 		moveSpeed = lerp(moveSpeed, MAXSPEED, 0.01)
 		camera.translation.z = lerp(camera.translation.z, MAXANGLE, moveSpeed/10000)
 		fuelVar -= 0.1
 		exhaust.visible = true
 		exhaust2.visible = true
 		exhaust3.visible = true
-	else:
+	elif canDie:
 		moveSpeed = lerp(moveSpeed, MINSPEED, 0.001)
 		camera.translation.z = lerp(camera.translation.z, MINANGLE, 1/(moveSpeed+1))
 	if backward:
@@ -103,21 +133,37 @@ func _process(delta):
 	
 	if exhaust.visible == true and $Rocket.playing == false:
 		$Rocket.play()
-		$Rocket.volume_db = moveSpeed/4 +10
+		#$Rocket.volume_db = moveSpeed/4 +10
 	elif exhaust.visible == false:
 		$Rocket.stop()
-	 
-	velocity = move_and_slide(direction3D*moveSpeed)
 	
-	cameraLook.rotation.z = 0
-	var rotationTarget = model.rotation.linear_interpolate(cameraLook.rotation, delta * rotationSpeed)
-	model.rotation = rotationTarget
-	collider.rotation = rotationTarget
+	if get_slide_count() > 0:
+		if get_slide_collision(0) != null:
+			if moveSpeed > 60:
+				moveSpeed = 0
+				isKnocked = true
+				$Knockback.start()
+				$Explode.play()
+				lives -= 1
+				normal = get_slide_collision(0).normal
+			#direction3D = get_slide_collision(0).normal
+			else:
+				moveSpeed = 0
+	
+	if isKnocked:
+		velocity = move_and_slide(normal*40)
+	else:
+		velocity = move_and_slide(direction3D*moveSpeed)
+	
+	if canDie:
+		cameraLook.rotation.z = 0
+		var rotationTarget = model.rotation.linear_interpolate(cameraLook.rotation, delta * rotationSpeed)
+		model.rotation = rotationTarget
+		collider.rotation = rotationTarget
 	
 	var newLaser = laser.instance()
-		
-	if shoot and canShoot:
-#		var newLaser = laser.instance()
+	
+	if shoot and canShoot and canDie:
 		newLaser.global_transform = model.get_node("ShootRay").global_transform
 		get_parent().add_child(newLaser)
 		$Laser.play()
@@ -125,10 +171,16 @@ func _process(delta):
 		$ShootTimer.start()
 
 func _unhandled_input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and canDie:
 		yaw = yaw - event.relative.x * ViewSensitivity
 		pitch = pitch - event.relative.y * ViewSensitivity
 		cameraLook.rotation = Vector3(deg2rad(pitch), deg2rad(yaw), 0)
 
 func _on_ShootTimer_timeout():
 	canShoot = true
+
+func _on_Knockback_timeout():
+	isKnocked = false
+
+func _die():
+	get_tree().change_scene("res://GameOverCutscene.tscn")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[sub_resource type="ParticlesMaterial" id=2]
+[sub_resource type="ParticlesMaterial" id=1]
 render_priority = 2
 emission_shape = 1
 emission_sphere_radius = 0.2
@@ -10,18 +10,18 @@ radial_accel_random = 0.43
 damping = 1.6
 scale = 0.1
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=2]
 flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 1, 0.537255, 0, 0.517647 )
 
-[sub_resource type="SphereMesh" id=4]
-material = SubResource( 3 )
+[sub_resource type="SphereMesh" id=3]
+material = SubResource( 2 )
 radius = 0.1
 height = 0.2
 rings = 16
 
-[sub_resource type="SphereMesh" id=1]
+[sub_resource type="SphereMesh" id=4]
 
 [sub_resource type="SpatialMaterial" id=5]
 render_priority = 1
@@ -41,13 +41,12 @@ albedo_color = Color( 0, 0, 0, 1 )
 [node name="Black Hole" type="Spatial"]
 
 [node name="Particles" type="Particles" parent="."]
-emitting = false
 amount = 500
 lifetime = 20.0
-process_material = SubResource( 2 )
-draw_pass_1 = SubResource( 4 )
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 1 )
+mesh = SubResource( 4 )
 material/0 = SubResource( 6 )
 

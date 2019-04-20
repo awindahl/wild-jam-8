@@ -2,7 +2,7 @@ extends Spatial
 
 var BULLET_SPEED = 180
 
-const KILL_TIMER = 12
+const KILL_TIMER = 24
 var timer = 0
 var forward_dir
 
@@ -20,5 +20,8 @@ func _physics_process(delta):
 		pass
 
 func _on_Area_body_entered(body):
-	if body.get("TYPE") == "ENEMY":
+	if body.get("TYPE") == "ASTEROID":
 		body._bullet_hit()
+		queue_free()
+	else:
+		pass
